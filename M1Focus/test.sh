@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+START_RUN_NUM=$1
+RUN_AMOUNT=$2
+
+CUR_RUN_NUM=$(($START_RUN_NUM+$RUN_AMOUNT))
+echo $CUR_RUN_NUM
