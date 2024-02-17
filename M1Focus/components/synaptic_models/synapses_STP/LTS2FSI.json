@@ -1,7 +1,5 @@
 {
     "level_of_detail": "GABA_AB_STP",
-    //lower this
-    //lower basee to fsi and increase cp to fsi
     "initW": 0.7,
     "tau_r_GABAA": 0.9,
     "tau_d_GABAA": 20.0,
