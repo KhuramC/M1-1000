@@ -45,6 +45,14 @@
         "file_name": "ecp.h5",
         "electrode_channels": "all",
 		"minimum_distance": "auto"
+        },
+        "v_reporte4-90": {
+          "variable_name": "v",
+          "cells": {"node_ids": [1,35,1005,1236,1688,46,124,581,637,1781,815,880,900,1819,1919,924,986,1940,1972,1996]},
+          "module": "membrane_report",
+          "sections": "soma",
+          "file_name": "v-report-around90-e4.h5"
+  
         }
     },
     "node_sets_file": "$BASE_DIR/node_sets.json",
