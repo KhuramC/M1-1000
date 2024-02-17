@@ -17,3 +17,6 @@ x86_64/
 /M1Focus/input/*.h5
 /M1Focus/output/*.*
 /Analysis/simulation_results/
+/Analysis/simulation_resultsv2/
+/Analysis/simulation_resultsv3/
+/Analysis/simulation_resultsv4/
