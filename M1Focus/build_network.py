@@ -9,7 +9,7 @@ from connectors import (
     spherical_dist, cylindrical_dist_z, GaussianDropoff, UniformInRange,
     pr_2_rho, rho_2_pr, ReciprocalConnector, UnidirectionConnector,
     OneToOneSequentialConnector, CorrelatedGapJunction,
-    syn_dist_delay_feng_section_PN, syn_section_PN, syn_dist_delay_feng
+    syn_const_delay_feng_section_PN, syn_section_PN, syn_const_delay
 )
 
 ##############################################################################
@@ -25,7 +25,7 @@ dt = 0.1  # ms
 
 # Network size and dimensions
 num_cells = 2000  # 10000
-column_width, column_height = 1000., 1000.
+column_width, column_height = 350., 300.
 x_start, x_end = - column_width / 2, column_width / 2
 y_start, y_end = - column_width / 2, column_width / 2
 z_start, z_end = - column_height / 2, column_height / 2
@@ -548,7 +548,7 @@ edge_definitions = [
             'target': {'pop_name': ['CP']}
         },
         'param': 'CP2CP',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # CS -> CS Reciprocal
         'network': 'cortex',
@@ -557,7 +557,7 @@ edge_definitions = [
             'target': {'pop_name': ['CS']}
         },
         'param': 'CS2CS',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # CP -> CS Unidirectional
         'network': 'cortex',
@@ -566,7 +566,7 @@ edge_definitions = [
             'target': {'pop_name': ['CS']}
         },
         'param': 'CP2CS',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # CS -> CP Unidirectional
         'network': 'cortex',
@@ -575,7 +575,7 @@ edge_definitions = [
             'target': {'pop_name': ['CP']}
         },
         'param': 'CS2CP',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # FSI -> FSI Reciprocal
         'network': 'cortex',
@@ -1100,7 +1100,7 @@ edge_params = {
         'delay': 0.0,
         'afferent_section_id': 2,
         'afferent_section_pos': 0.8,  # end of apic
-        'dynamics_params': 'Thal2CP.json'
+        'dynamics_params': 'Base2CP.json'
     },
     'Base2CS': {
         'connector_class': get_connector,
@@ -1112,7 +1112,7 @@ edge_params = {
         'delay': 0.0,
         'afferent_section_id': 2,
         'afferent_section_pos': 0.8,  # end of apic
-        'dynamics_params': 'Thal2CS.json'
+        'dynamics_params': 'Base2CS.json'
     },
     'Base2FSI': {
         'connector_class': get_connector,
@@ -1142,9 +1142,9 @@ edge_params = {
 
 # Will be called by conn.add_properties() for the associated connection
 edge_add_properties = {
-    'syn_dist_delay_feng_section_PN': {
+    'syn_const_delay_feng_section_PN': {
         'names': ['delay', 'afferent_section_id', 'afferent_section_pos'],
-        'rule': syn_dist_delay_feng_section_PN,
+        'rule': syn_const_delay_feng_section_PN,
         'rule_params': {
             'p': 0.9, 'sec_id': (1, 2), 'sec_x': (0.4, 0.6), 'min_delay': 1.0
         },
@@ -1158,7 +1158,7 @@ edge_add_properties = {
     },
     'syn_dist_delay_feng_default': {
         'names': 'delay',
-        'rule': syn_dist_delay_feng,
+        'rule': syn_const_delay,
         'dtypes': np.float64
     }
 }
@@ -1239,7 +1239,7 @@ if edge_effects:
         shell_edge_params[shell_edge['param']] = edge_params_val
         # edge_params_val['delay'] = 0.0 # Set delay to 0
         # add_properties = shell_edge.pop('add_properties')
-        # if add_properties == 'syn_dist_delay_feng_section_PN':
+        # if add_properties == 'syn_const_delay_feng_section_PN':
             # shell_edge['add_properties'] = 'syn_section_PN'
 
     # Check parameters
@@ -1275,7 +1275,7 @@ gap_junc_FSI = CorrelatedGapJunction(
 )
 gap_junc_FSI.setup_nodes(source=population, target=population)
 
-g_gap = 0.0000495 # microsiemens
+g_gap = 0.000066# microsiemens
 conn = net.add_edges(
     is_gap_junction=True, syn_weight=g_gap, target_sections=None,
     afferent_section_id=0, afferent_section_pos=0.5,
@@ -1294,7 +1294,7 @@ gap_junc_LTS = CorrelatedGapJunction(
 )
 gap_junc_LTS.setup_nodes(source=population, target=population)
 
-g_gap = 0.000798 # microsiemens
+g_gap = 0.00076 # microsiemens
 conn = net.add_edges(
     is_gap_junction=True, syn_weight=g_gap, target_sections=None,
     afferent_section_id=0, afferent_section_pos=0.5,
