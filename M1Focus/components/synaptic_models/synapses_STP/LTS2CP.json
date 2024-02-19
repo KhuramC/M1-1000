@@ -1,6 +1,6 @@
 {
     "level_of_detail": "GABA_AB_STP",
-    "initW": 2.25,
+    "initW": 2.30,
     "tau_r_GABAA": 0.9,
     "tau_d_GABAA": 30.0,
     "e_GABAA": -90.0,
