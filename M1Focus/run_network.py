@@ -44,6 +44,13 @@ def run(config_file=CONFIG, use_coreneuron=USE_CORENEURON):
         sim = bionet.BioSimulator.from_config(conf, network=graph)
 
     pc.barrier()
+    
+    cells = graph.get_local_cells()
+    for cell in cells:
+        cells[cell].hobj.insert_mechs(cells[cell].gid)
+        pass
+    
+    
     sim.run()
 
     bionet.nrn.quit_execution()
