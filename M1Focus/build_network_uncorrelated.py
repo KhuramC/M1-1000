@@ -467,22 +467,22 @@ if uncorrelated:
             'cells': [
                 { # CP
                  'N': uncor_num_CP,
-                 'pop_name': 'uncor_CP',
+                 'pop_name': 'CP',
                  'model_type': 'virtual'   
                 },
                 { # CS
                  'N': uncor_num_CS,
-                 'pop_name': 'uncor_CS',
+                 'pop_name': 'CS',
                  'model_type': 'virtual'   
                 },
                 { # FSI
                  'N': uncor_num_FSI,
-                 'pop_name': 'uncor_FSI',
+                 'pop_name': 'FSI',
                  'model_type': 'virtual'   
                 },
                 { # LTS
                  'N': uncor_num_LTS,
-                 'pop_name': 'uncor_LTS',
+                 'pop_name': 'LTS',
                  'model_type': 'virtual'   
                 }
             ]
@@ -1374,10 +1374,12 @@ edge_params = {
         'afferent_section_pos': 0.5,
         'dynamics_params': 'Base2LTS.json'
     },
+    ##########################################################
+    ################### UNCORRELATED INPUT ###################
     'UNCOR_CP2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1390,7 +1392,7 @@ edge_params = {
     'UNCOR_CS2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1403,7 +1405,7 @@ edge_params = {
     'UNCOR_CP2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1416,7 +1418,7 @@ edge_params = {
     'UNCOR_CS2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1429,7 +1431,7 @@ edge_params = {
     'UNCOR_FSI2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1442,7 +1444,7 @@ edge_params = {
     'UNCOR_LTS2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1455,7 +1457,7 @@ edge_params = {
     'UNCOR_FSI2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1468,7 +1470,7 @@ edge_params = {
     'UNCOR_LTS2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1481,7 +1483,7 @@ edge_params = {
     'UNCOR_CP2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1494,7 +1496,7 @@ edge_params = {
     'UNCOR_FSI2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1507,7 +1509,7 @@ edge_params = {
     'UNCOR_CS2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1520,7 +1522,7 @@ edge_params = {
     'UNCOR_FSI2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1533,7 +1535,7 @@ edge_params = {
     'UNCOR_CP2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1546,7 +1548,7 @@ edge_params = {
     'UNCOR_LTS2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1559,7 +1561,7 @@ edge_params = {
     'UNCOR_CS2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1572,7 +1574,7 @@ edge_params = {
     'UNCOR_LTS2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0,
+            'p': 0.1,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
