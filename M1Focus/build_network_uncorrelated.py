@@ -1373,6 +1373,214 @@ edge_params = {
         'afferent_section_id': 1,  # dend
         'afferent_section_pos': 0.5,
         'dynamics_params': 'Base2LTS.json'
+    },
+    'UNCOR_CP2CP': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,
+        'afferent_section_pos': 0.4,
+        'dynamics_params': 'CP2CP.json'
+    },
+    'UNCOR_CS2CS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,
+        'afferent_section_pos': 0.4,
+        'dynamics_params': 'CS2CS.json'
+    },
+    'UNCOR_CP2CS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,
+        'afferent_section_pos': 0.4,
+        'dynamics_params': 'CP2CS.json'
+    },
+    'UNCOR_CS2CP': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,
+        'afferent_section_pos': 0.4,
+        'dynamics_params': 'CS2CP.json'
+    },
+    'UNCOR_FSI2FSI': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 0,  # soma
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'FSI2FSI.json'
+    },
+    'UNCOR_LTS2LTS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 0,  # soma
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'LTS2LTS.json'
+    },
+    'UNCOR_FSI2LTS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 0,  # soma
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'FSI2LTS.json'
+    },
+    'UNCOR_LTS2FSI': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 0,  # soma
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'LTS2FSI.json'
+    },
+    'UNCOR_CP2FSI': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,  # dend
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'CP2FSI.json'
+    },
+    'UNCOR_FSI2CP': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 0,  # soma
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'FSI2CP.json'
+    },
+    'UNCOR_CS2FSI': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,  # dend
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'CS2FSI.json'
+    },
+    'UNCOR_FSI2CS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 0,  # soma
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'FSI2CS.json'
+    },
+    'UNCOR_CP2LTS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,  # dend
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'CP2LTS.json'
+    },
+    'UNCOR_LTS2CP': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 2,
+        'afferent_section_pos': 0.8,  # end of apic
+        'dynamics_params': 'LTS2CP.json'
+    },
+    'UNCOR_CS2LTS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 1,  # dend
+        'afferent_section_pos': 0.5,
+        'dynamics_params': 'CS2LTS.json'
+    },
+    'UNCOR_LTS2CS': {
+        'connector_class': UnidirectionConnector,
+        'connector_params': {
+            'p': 0,
+            },
+        'weight_function': 'lognormal_weight',
+        'syn_weight': 1.,
+        'weight_sigma': 0.8,
+        'sigma_upper_bound': 3.,
+        'afferent_section_id': 2,
+        'afferent_section_pos': 0.8,  # end of apic
+        'dynamics_params': 'LTS2CS.json'
     }
 }  # edges referenced by name
 
