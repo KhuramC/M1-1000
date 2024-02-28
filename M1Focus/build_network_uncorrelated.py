@@ -813,7 +813,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   #uncorrelated CS -> cortex CS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['CS']},
             'target': {'pop_name': ['CS']},
@@ -824,7 +824,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   #uncorrelated CP -> cortex CS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['CP']},
             'target': {'pop_name': ['CS']},
@@ -835,7 +835,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   #uncorrelated CS -> cortex CP Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['CS']},
             'target': {'pop_name': ['CP']},
@@ -846,7 +846,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   #uncorrelated FSI -> cortex FSI Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['FSI']},
             'target': {'pop_name': ['FSI']},
@@ -857,7 +857,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated LTS -> cortex LTS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['LTS']},
             'target': {'pop_name': ['LTS']},
@@ -868,7 +868,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   # FSI -> LTS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['FSI']},
             'target': {'pop_name': ['LTS']},
@@ -879,7 +879,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated FSI -> cortex LTS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['LTS']},
             'target': {'pop_name': ['FSI']},
@@ -890,7 +890,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CP -> cortex FSI Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['CP']},
             'target': {'pop_name': ['FSI']},
@@ -901,7 +901,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CP -> cortex FSI Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['FSI']},
             'target': {'pop_name': ['CP']},
@@ -912,7 +912,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CS -> cortex FSI Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['CS']},
             'target': {'pop_name': ['FSI']},
@@ -923,7 +923,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CS -> cortex FSI Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['FSI']},
             'target': {'pop_name': ['CS']},
@@ -934,7 +934,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CP -> cortex LTS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['CP']},
             'target': {'pop_name': ['LTS']},
@@ -945,7 +945,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CP -> cortex LTS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['LTS']},
             'target': {'pop_name': ['CP']},
@@ -956,7 +956,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CS -> cortex LTS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['CS']},
             'target': {'pop_name': ['LTS']},
@@ -967,7 +967,7 @@ edge_definitions = [
         'add_properties': 'syn_const_delay_feng_default'
     },
     {   #uncorrelated CS -> cortex LTS Unidirectional
-        'network': 'cortex',
+        'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['LTS']},
             'target': {'pop_name': ['CS']},
@@ -991,16 +991,13 @@ edge_definitions = [
 edge_params = {
     'CP2CP': {
         'connector_class': ReciprocalConnector,
-        'connector_params': {
-            #Total connections from [234795 + 71604 + 118928(Shell)] / 4000(total in D model) = 106.33
-            #p0 = 106.33 / 399(don't want synapse to itself) = 0.2665
-            #'p0': 0.2665,
-            #'pr': rho_2_pr(0.2665,0.2665,0.433),
-            #for 2,000 cell version
-            #p0 = 106.33 / 799(don't want synapse to itself) = 0.1331
-            'p0': 0.1331, 
-            #rho is the last value
-           'pr': rho_2_pr(0.1331,0.1331,0.433),
+        'connector_params': {            
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CP -> CP total connections from [234795 + 71604(reciprocal)] / 4000(Total CP in D model) = 76.60
+            #p0 = 76.60 / 799(don't want synapse to itself) = 0.09587
+            'p0': 0.09587,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.09587,0.09587,0.433),
             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
@@ -1013,16 +1010,13 @@ edge_params = {
     },
     'CS2CS': {
         'connector_class': ReciprocalConnector,
-        'connector_params': {
-            #Total connections [242197 + 22741 + 111505(Shell)] / 4000(total in D model) = 94.11
-            #p0: 94.11 / 399(don't want synapses to itself) = 0.2359
-            #'p0': 0.2359,
-            #'pr': rho_2_pr(0.2359,0.2359,0.126),
-            #for 2,000 cell version:
-            #p0: 94.11 / 799(don't want synapses to itself) = 0.11778
-            'p0': 0.11778,
-            #rho is last value
-            'pr': rho_2_pr(0.11778,0.11778,0.126),
+        'connector_params': {            
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CS -> CS total connections [242197 + 22741(reciprocal)] / 4000(total CS in D model) = 66.2345
+            #p0 = 66.2345 / 799(don't want synapse to itself) = 0.08290
+            'p0': 0.08290,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.08290,0.08290,0.126),
             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
@@ -1036,14 +1030,10 @@ edge_params = {
     'CP2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            #Total connections = [34750 + 14120(shell)] / 4000(total CS in D model) = 12.22
-            #p: 12.22 / 400(Total CP in H) = 0.03054
-            #'p': 0.03054,
-            #Ziao's doc claims that p: 0.0217?
-            
-            #2,000 cell version
-            #p: 12.22 / 800(Total CP in H) = 0.015275
-            'p': 0.015275,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CP -> CS total connections = [34750] / 4000(total CS in D model) = 8.6875
+            #p = 8.6875 / 800(Total CP in H) = 0.01086
+            'p': 0.01086,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1056,13 +1046,10 @@ edge_params = {
     'CS2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            #Total connections = [390230 + 156372(shell)] / 4000(total CP in D model) = 136.65
-            #p: 136.65 / 400(Total CS in H) = 0.34163
-            #'p': 0.34163,
-            
-            #2,000 cell version
-            #p: 136.65 / 800(Total CS in H) = 0.170815
-            'p': 0.170815,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CS -> CP total connections = [390230] / 4000(total CP in D model) = 97.5575
+            #p = 97.5575 / 800(Total CS in H) = 0.12195
+            'p': 0.12195,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1072,19 +1059,19 @@ edge_params = {
         'afferent_section_pos': 0.4,
         'dynamics_params': 'CS2CP.json'
     },
+    ##############################################################
+    ###  CHECK WITH GREG ABOUT WHY THESE CONNECTORS ARE WRONG  ###
+    ##############################################################
     'FSI2FSI': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            #Total connections[25219 + 2188 + 17903(Shell)] / 1200(Total in D model) = 37.76
-            #p0: 37.76 / 119(don't want synapses to itself) = 0.3173
-            #'p0': 0.3173,
-            #'pr': rho_2_pr(0.3173,0.3173,0.071),
-            #for 2,000 cell version
-            #p0: 37.76 / 239(don;t want synapses to itself) = 0.15799
-            'p0': 0.15799,
-             #rho is last value
-             'pr': rho_2_pr(0.15799,0.15799,0.071),
-             'estimate_rho': False,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #FSI -> FSI total connections[25219 + 2188(reciprocal)] / 1200(Total FSI in D model) = 22.83917
+            #p0 = 22.83917 / 239(don't want synapses to itself) = 0.09556
+            'p0': 0.09556,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.09556,0.09556,0.071),
+            'estimate_rho': False,   
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1096,15 +1083,11 @@ edge_params = {
     },
     'LTS2LTS': {
         'connector_class': UnidirectionConnector,
-        'connector_params': {
-            #Total connections[9267 + 6149(shell)] = / 800(Total in D model) = 19.27
-            #p: 19.27 / 79(don't want synapses to itself) = 0.24392
-            #biggest change
-            #'p': 0.24392,
-            
-            #For 2,000 cell version
-            #p: = 19.27 / 159(don't want synapses to itself) = 0.12119
-            'p': 0.12119,
+        'connector_params': {            
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #LTS -> LTS total connections [9267] / 800(Total LTS in D model) = 11.58375
+            #p = 11.58375 / 159(don't want synapses to itself) = 0.07285
+            'p': 0.07285,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1114,23 +1097,20 @@ edge_params = {
         'afferent_section_pos': 0.5,
         'dynamics_params': 'LTS2LTS.json'
     },
+    ###############################################################
+    ###############################################################
     'FSI2LTS': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            #total connection [31558 + 20882(shell)] / 800(Total LTS in D model) = 65.55
-            #p0: 65.55 / 120(total FSI in H) = 0.54625
-            #'p0':0.54625,
-            #total connection [49018 + 32993(shell)] / 1200(Total FSI in D model) = 68.34
-            #p1: 68.34 / 80(total LTS in H) = 0.85425
-            #'p1':0.85425,
-            #'pr': rho_2_pr(0.54625,0.85425,0.165),
-            #for 2,000 cell version
-            #p0: 65.55 / 240(Total FSI in H) = 0.273125
-            'p0': 0.273125,
-            #p1: 68.34 / 160(Total LTS in H) = 0.427125
-            'p1': 0.427125,
-            #rho is last value
-            'pr': rho_2_pr(0.273125,0.427125,0.165),
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #FSI -> LTS total connection [31558] / 800(Total LTS in D model) = 39.4475
+            #p0 = 39.4475 / 240(Total FSI in H) = 0.16436
+            'p0': 0.16436,
+            #LTS -> FSI total connection [49018] / 1200(Total FSI in D model) = 40.8483
+            #p1 = 40.8483 / 160(Total LTS in H) = 0.25530
+            'p1': 0.25530,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.16436,0.25530,0.165),
             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
@@ -1155,20 +1135,15 @@ edge_params = {
     'CP2FSI': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            #Total connection [253997 + 80519(shell)] / 1200(Total FSI in D model) = 278.8
-            #p0: 278.8 / 400(total CP in H) = 0.697
-            #'p0':0.697,
-            #Total connection [159483 + 80214(shell)] / 4000(Total CP in D model) = 59.9
-            #p1: 59.9 / 120(Total FSI in H) = 0.499
-            #'p1':0.499,
-            #'pr': rho_2_pr(0.697,0.499,0.407),
-            #2,000 cell model version
-            #p0: 278.8 / 800(Total CP in H) = 0.3485
-            'p0': 0.3485,
-            #p1: 59.9 / 240(Total FSI in H) = 0.249583
-            'p1': 0.249583,
-            #last is rho
-            'pr': rho_2_pr(0.3485,0.249583,0.407),
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CP -> FSI total connection [253997] / 1200(Total FSI in D model) = 211.66417
+            #p0 = 211.66417 / 800(Total CP in H) = 0.26458
+            'p0': 0.26458,
+            #FSI -> CP total connection [159483] / 4000(Total CP in D model) = 39.87075
+            #p1 =  39.87075 / 240(Total FSI in H) = 0.16613
+            'p1': 0.16613,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.26458,0.16613,0.407),
             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
@@ -1193,20 +1168,15 @@ edge_params = {
     'CS2FSI': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            #Total connection[173295 + 56807(shell)] / 1200(Total FSI in D model) = 191.75
-            #p0: 191.75 / 400(Total CS in H) = 0.47938
-            #'p0':0.47938,
-            #total connection[119889 + 63032(shell)] / 4000(Total CS in D model) = 45.73
-            #p1: 45.73 / 120(Total FSI in H) = 0.38108
-            #'p1':0.38108,
-            #'pr': rho_2_pr(0.47938,0.38108,0.422),
-            #for 2,000 cell version
-            #p0: 191.75 / 800(Total CS in H) = 0.2396875
-            'p0': 0.2396875,
-            #p1: 45.73 / 240(Total FSI in H) = 0.1905416
-            'p1': 0.1905416,
-            #rho is last value
-            'pr': rho_2_pr(0.2396875,0.1905416,0.422),
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CS -> FSI total connection[173295] / 1200(Total FSI in D model) = 144.4125
+            #p0 = 144.4125 / 800(Total CS in H) = 0.18052
+            'p0': 0.18052,
+            #FSI -> CS total connection[119889] / 4000(Total CS in D model) = 29.97225
+            #p1 = 29.97225 / 240(Total FSI in H) = 0.12488
+            'p1': 0.12488,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.18052,0.12488,0.422),
             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
@@ -1231,20 +1201,15 @@ edge_params = {
     'CP2LTS': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            #Total connections = [149804 + 46497(shell)] / 800(Total LTS in D model) = 245.38
-            #p0: 245.38 / 400(Total CP in H) = 0.61345
-            #'p0':0.61345,
-            #Total connections = [85074 + 44780(shell)] / 4000(Total CP in D model) = 32.46
-            #p1: 32.46 / 80(Total LTS in H) = 0.40575
-            #'p1':0.40575,
-            #'pr': rho_2_pr(0.61345,0.40575,0.192),
-            #2,000 cell version:
-            #p0: 245.38 / 800(Total CP in H) = 0.306725
-            'p0': 0.306725,
-            #p1: 32.46 / 160(Total LTS in H) = 0.202875
-            'p1': 0.202875,
-            #last value is rho
-            'pr': rho_2_pr(0.306725,0.202875,0.192),
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CP -> LTS total connections = [149804] / 800(Total LTS in D model) = 187.255
+            #p0 = 187.255 / 800(Total CP in H) = 0.23407
+            'p0': 0.23407,
+            #Total connections = [85074] / 4000(Total CP in D model) = 21.2685
+            #p1 = 21.2685 / 160(Total LTS in H) = 0.13293
+            'p1': 0.13293,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.23407,0.13293,0.192),
             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
@@ -1269,20 +1234,15 @@ edge_params = {
     'CS2LTS': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            #Total connections = [68442 + 21774(shell)] / 800(Total LTS in D model) = 112.77
-            #p0: 112.77 / 400(Total CS in H) = 0.28193
-            #'p0':0.28193,
-            #Total connections = [19834 + 10440(shell)] / 4000(Total CS in D model) = 7.57
-            #p1: 7.57 / 80(Total LTS in H) = 0.094625
-            #'p1': 0.09463,
-            #'pr': rho_2_pr(0.28193,0.09463,0.467),
-            #2,000 cell version
-            #p0: 112.77 / 800(Total CS in H) = 0.1409625
-            'p0': 0.1409625,
-            #p1: 7.57 / 160(Total LTS in H) = 0.0473125
-            'p1': 0.0473125,
-            #last value is rho
-            'pr': rho_2_pr(0.1409625,0.0473125,0.467),
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #CS -> LTS total connections = [68442] / 800(Total LTS in D model) = 85.5525
+            #p0 = 85.5525 / 800(Total CS in H) = 0.10694
+            'p0': 0.10694,
+            #LTS -> CS total connections = [19834] / 4000(Total CS in D model) = 4.9585
+            #p1 = 4.9585 / 160(Total LTS in H) = 0.03099
+            'p1': 0.03099,
+            #rho is last value, gotten from D model.
+            'pr': rho_2_pr(0.10694,0.03099,0.467),
             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
@@ -1379,7 +1339,10 @@ edge_params = {
     'UNCOR_CP2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CP -> CP total connections [118928(Shell)] / 4000(Total CP in D model) = 29.732
+            #p = 29.732 / [Total CP in uncorrelated]
+            'p': 29.732 / uncor_num_CP,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1392,7 +1355,10 @@ edge_params = {
     'UNCOR_CS2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CS -> CS total connections [111505(Shell)] / 4000(Total CS in D model) = 27.87625
+            #p = 27.87625 / [Total CS in uncorrelated]
+            'p': 27.87625 / uncor_num_CS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1405,7 +1371,10 @@ edge_params = {
     'UNCOR_CP2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CP -> CS total connections [14120(shell)] / 4000(Total CS in D model) = 3.53
+            #p = 3.53 / [Total CS in uncorrelated]
+            'p': 3.53 / uncor_num_CS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1418,7 +1387,10 @@ edge_params = {
     'UNCOR_CS2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CS-> CP total connections [156372(shell)] / 4000(Total CP in D model) = 39.093
+            #p = 39.093 / [Total CP in uncorrelated]
+            'p': 39.093 / uncor_num_CP,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1431,7 +1403,10 @@ edge_params = {
     'UNCOR_FSI2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_FSI -> FSI total connections [17903(Shell)] / 1200(Total FSI in D model) = 14.91917
+            #p = 14.91917 / [Total FSI in uncorrelated]
+            'p': 14.91917 / uncor_num_FSI,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1444,7 +1419,10 @@ edge_params = {
     'UNCOR_LTS2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_LTS -> LTS total connections [6149(shell)] / 800(Total LTS in D model) = 7.68625
+            #p = 7.68625 / [Total LTS in uncorrelated]
+            'p': 7.68625 / uncor_num_LTS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1457,7 +1435,10 @@ edge_params = {
     'UNCOR_FSI2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_FSI -> LTS total connections [20882(shell)] / 800(Total LTS in D model) = 26.1025
+            #p = 26.1025 / [Total LTS in uncorrelated]
+            'p': 26.1025 / uncor_num_LTS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1470,7 +1451,10 @@ edge_params = {
     'UNCOR_LTS2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_LTS -> FSI total connections [32993(shell)] / 1200(Total FSI in D model) = 27.49417
+            #p = 27.49417 / [Total FSI in uncorrelated]
+            'p': 27.49417 / uncor_num_FSI,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1483,7 +1467,10 @@ edge_params = {
     'UNCOR_CP2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CP -> FSI total connections [80519(shell)] = / 1200(Total FSI in D model) = 67.09917
+            #p = 67.09917 / [Total FSI in uncorrelated]
+            'p': 67.09917 / uncor_num_FSI,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1496,7 +1483,10 @@ edge_params = {
     'UNCOR_FSI2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_FSI -> CP total connections [80214(shell)] = / 4000(Total CP in D model) = 20.0535 
+            #p = 20.0535 / [Total CP in uncorrelated]
+            'p': 20.0535 / uncor_num_CP,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1509,7 +1499,10 @@ edge_params = {
     'UNCOR_CS2FSI': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CS -> FSI total connections [56807(shell)] = / 1200(Total FSI in D model) = 47.33917
+            #p = 47.33917 / [Total FSI in uncorrelated]
+            'p': 47.33917 / uncor_num_FSI,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1522,7 +1515,10 @@ edge_params = {
     'UNCOR_FSI2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_FSI -> CS total connections [63032(shell)] = / 4000(Total CS in D model) = 15.758
+            #p = 15.758 / [Total CS in uncorrelated]
+            'p': 15.758 / uncor_num_CS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1535,7 +1531,10 @@ edge_params = {
     'UNCOR_CP2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CP -> LTS total connections [46497(shell)] = / 800(Total LTS in D model) = 58.12125
+            #p = 58.12125 / [Total LTS in uncorrelated]
+            'p': 58.12125 / uncor_num_LTS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1548,7 +1547,10 @@ edge_params = {
     'UNCOR_LTS2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_LTS -> CP total connections [44780(shell)] = / 4000(Total CP in D model) = 11.195
+            #p = 11.195 / [Total CP in uncorrelated]
+            'p': 11.195 / uncor_num_CP,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1561,7 +1563,10 @@ edge_params = {
     'UNCOR_CS2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_CS -> LTS total connections [21774(shell)] = / 800(Total LTS in D model) = 27.2175
+            #p = 27.2175 / [Total LTS in uncorrelated]
+            'p': 27.2175 / uncor_num_LTS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1574,7 +1579,10 @@ edge_params = {
     'UNCOR_LTS2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': 0.1,
+            #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
+            #Uncor_LTS -> CS total connections [10440(shell)] = / 4000(Total CS in D model) = 2.61
+            #p = 2.61 / [Total CS in uncorrelated]
+            'p': 2.61 / uncor_num_CS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,

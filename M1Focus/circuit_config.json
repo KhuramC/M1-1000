@@ -26,6 +26,10 @@
       {
         "nodes_file": "$NETWORK_DIR/thalamus_nodes.h5",
         "node_types_file": "$NETWORK_DIR/thalamus_node_types.csv"
+      },
+      {
+        "nodes_file":"$NETWORK_DIR/uncorrelated_nodes.h5",
+        "node_types_file": "$NETWORK_DIR/uncorrelated_node_types.csv"
       }
     ],
     "edges": [
@@ -40,6 +44,10 @@
       {
         "edge_types_file": "$NETWORK_DIR/thalamus_cortex_edge_types.csv",
         "edges_file": "$NETWORK_DIR/thalamus_cortex_edges.h5"
+      }, 
+      {
+        "edge_types_file": "$NETWORK_DIR/uncorrelated_cortex_edge_types.csv",
+        "edges_file": "$NETWORK_DIR/uncorrelated_cortex_edges.h5"
       }
     ],
     "gap_juncs": [
