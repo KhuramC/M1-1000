@@ -26,3 +26,10 @@ x86_64/
 /M1Focus/out_baseline.txt
 /M1Focus/out_long.txt
 /M1Focus/out_short.txt
+Analysis/simulation_results_v4/
+M1Focus/error_baseline.txt
+M1Focus/error_long.txt
+M1Focus/error_short.txt
+M1Focus/out_baseline.txt
+M1Focus/out_long.txt
+M1Focus/out_short.txt
