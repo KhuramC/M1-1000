@@ -1373,8 +1373,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_CP -> CS total connections [14120(shell)] / 4000(Total CS in D model) = 3.53
-            #p = 3.53 / [Total CS in uncorrelated]
-            'p': 3.53 / uncor_num_CS,
+            #p = 3.53 / [Total CP in uncorrelated]
+            'p': 3.53 / uncor_num_CP,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1389,8 +1389,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_CS-> CP total connections [156372(shell)] / 4000(Total CP in D model) = 39.093
-            #p = 39.093 / [Total CP in uncorrelated]
-            'p': 39.093 / uncor_num_CP,
+            #p = 39.093 / [Total CS in uncorrelated]
+            'p': 39.093 / uncor_num_CS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1437,8 +1437,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_FSI -> LTS total connections [20882(shell)] / 800(Total LTS in D model) = 26.1025
-            #p = 26.1025 / [Total LTS in uncorrelated]
-            'p': 26.1025 / uncor_num_LTS,
+            #p = 26.1025 / [Total FSI in uncorrelated]
+            'p': 26.1025 / uncor_num_FSI,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1453,8 +1453,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_LTS -> FSI total connections [32993(shell)] / 1200(Total FSI in D model) = 27.49417
-            #p = 27.49417 / [Total FSI in uncorrelated]
-            'p': 27.49417 / uncor_num_FSI,
+            #p = 27.49417 / [Total LTS in uncorrelated]
+            'p': 27.49417 / uncor_num_LTS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1469,8 +1469,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_CP -> FSI total connections [80519(shell)] = / 1200(Total FSI in D model) = 67.09917
-            #p = 67.09917 / [Total FSI in uncorrelated]
-            'p': 67.09917 / uncor_num_FSI,
+            #p = 67.09917 / [Total CP in uncorrelated]
+            'p': 67.09917 / uncor_num_CP,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1485,8 +1485,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_FSI -> CP total connections [80214(shell)] = / 4000(Total CP in D model) = 20.0535 
-            #p = 20.0535 / [Total CP in uncorrelated]
-            'p': 20.0535 / uncor_num_CP,
+            #p = 20.0535 / [Total FSI in uncorrelated]
+            'p': 20.0535 / uncor_num_FSI,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1501,8 +1501,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_CS -> FSI total connections [56807(shell)] = / 1200(Total FSI in D model) = 47.33917
-            #p = 47.33917 / [Total FSI in uncorrelated]
-            'p': 47.33917 / uncor_num_FSI,
+            #p = 47.33917 / [Total CS in uncorrelated]
+            'p': 47.33917 / uncor_num_CS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1517,8 +1517,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_FSI -> CS total connections [63032(shell)] = / 4000(Total CS in D model) = 15.758
-            #p = 15.758 / [Total CS in uncorrelated]
-            'p': 15.758 / uncor_num_CS,
+            #p = 15.758 / [Total FSI in uncorrelated]
+            'p': 15.758 / uncor_num_FSI,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1533,8 +1533,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_CP -> LTS total connections [46497(shell)] = / 800(Total LTS in D model) = 58.12125
-            #p = 58.12125 / [Total LTS in uncorrelated]
-            'p': 58.12125 / uncor_num_LTS,
+            #p = 58.12125 / [Total CP in uncorrelated]
+            'p': 58.12125 / uncor_num_CP,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1549,8 +1549,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_LTS -> CP total connections [44780(shell)] = / 4000(Total CP in D model) = 11.195
-            #p = 11.195 / [Total CP in uncorrelated]
-            'p': 11.195 / uncor_num_CP,
+            #p = 11.195 / [Total LTS in uncorrelated]
+            'p': 11.195 / uncor_num_LTS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1565,8 +1565,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_CS -> LTS total connections [21774(shell)] = / 800(Total LTS in D model) = 27.2175
-            #p = 27.2175 / [Total LTS in uncorrelated]
-            'p': 27.2175 / uncor_num_LTS,
+            #p = 27.2175 / [Total CS in uncorrelated]
+            'p': 27.2175 / uncor_num_CS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1581,8 +1581,8 @@ edge_params = {
         'connector_params': {
             #Probabilities based on having extrinsic uncorrelated input and 2000 bio cells
             #Uncor_LTS -> CS total connections [10440(shell)] = / 4000(Total CS in D model) = 2.61
-            #p = 2.61 / [Total CS in uncorrelated]
-            'p': 2.61 / uncor_num_CS,
+            #p = 2.61 / [Total LTS in uncorrelated]
+            'p': 2.61 / uncor_num_LTS,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
