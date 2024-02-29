@@ -240,6 +240,54 @@ def build_input(t_stop=t_stop, n_assemblies=N_ASSEMBLIES):
 
     print("Core cells: %.3f sec" % (time.perf_counter() - start_timer))
 
+    # These inputs are for the baseline firing rates of the cells in the uncorrelated input.
+    if 'uncorrelated' in nodes:
+        psg = PoissonSpikeGenerator(population='uncorrelated', seed=psgseed+10)
+        uncorrelated_fr = {'CP': (1.9, 1.85), 'CS': (1.3, 1.45),
+                    'FSI': (7.5, 6.7), 'LTS': (5.0, 5.9)}
+        
+        #uncorrelated_fr = {'CP': (1000, 0), 'CS':(1,0), 'FSI':(1,0), 'LTS':(1,0)}
+        constant_fr = False
+        uncorrelated_nodes = get_populations(nodes['uncorrelated'], pop_names, only_id=True)
+
+        # Select effective nodes in uncorrelated that only has connections to core
+        edge_paths = util.load_config("config.json")['networks']['edges']
+        for path in edge_paths:
+            if 'uncorrelated_cortex' in path['edge_types_file']:
+                _, uncorrelated_edges = util.load_edges(**path)
+        effective_uncorrelated = set(uncorrelated_edges['source_node_id'])
+
+        def effective_cell(cell_list, effect_set):
+            effect_list = [x for x in cell_list if x in effect_set]
+            ratio = len(effect_list) / len(cell_list)
+            return effect_list, ratio
+
+        print("Proportion of effective cells in uncorrelated.")
+
+        fr_list = []
+        for p, node_ids in uncorrelated_nodes.items():
+            node_ids, ratio = effective_cell(node_ids, effective_uncorrelated)
+            print("%.1f%% effective %s." % (100 * ratio, p))
+
+            if constant_fr:
+                # Constant mean firing rate for all cells
+                fr = uncorrelated_fr[p][0]
+                psg.add(node_ids=node_ids, firing_rate=fr, times=sim_time)
+            else:
+                # Lognormal distributed mean firing rate
+                fr = psg_lognormal_fr(psg, node_ids, mean=uncorrelated_fr[p][0],
+                                      stdev=uncorrelated_fr[p][1], times=sim_time)
+                fr_list.append(fr)
+
+        if not constant_fr:
+            fr_file = os.path.join(INPUT_PATH, "Lognormal_Uncorrelated_FR.csv")
+            with open(fr_file, 'w', newline='') as f:
+                writer = csv.writer(f, delimiter=',')
+                writer.writerows(fr_list)
+
+        psg.to_sonata(os.path.join(INPUT_PATH, "uncorrelated.h5"))
+        print("Uncorrelated cells: %.3f sec" % (time.perf_counter() - start_timer))
+
     # These inputs are for the baseline firing rates of the cells in the shell.
     if 'shell' in nodes:
         start_timer = time.perf_counter()
