@@ -29,7 +29,13 @@
 			"module": "sonata",
 			"input_file": "$INPUT_DIR/thalamus_long.h5",
 			"node_set": "thalamus"
-        }
+        },
+        "uncorrelated_spikes":{
+          "input_type": "spikes",
+          "module": "sonata",
+          "input_file": "$INPUT_DIR/uncorrelated.h5",
+          "node_set": {"population": "uncorrelated"}
+      }
     },
     "output": {
       "log_file": "log.txt",

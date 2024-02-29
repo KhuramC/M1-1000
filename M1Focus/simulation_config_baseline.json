@@ -7,7 +7,7 @@
     "target_simulator": "NEURON",
     "run": {
       "tstart": 0.0,
-      "tstop": 15500.0,
+      "tstop": 10000.0,
       "dt": 0.1,
       "dL": 2000000.0,
       "spike_threshold": -15.0,
@@ -18,12 +18,18 @@
       "v_init": -70.0
     },
     "inputs": {
-        "baseline_spikes": {
-            "input_type": "spikes",
-            "module": "sonata",
-            "input_file": "$INPUT_DIR/baseline.h5",
-            "node_set": "baseline"
-        }
+      "baseline_spikes": {
+        "input_type": "spikes",
+        "module": "sonata",
+        "input_file": "$INPUT_DIR/baseline.h5",
+        "node_set": "baseline"
+      },
+        "uncorrelated_spikes":{
+          "input_type": "spikes",
+          "module": "sonata",
+          "input_file": "$INPUT_DIR/uncorrelated.h5",
+          "node_set": {"population": "uncorrelated"}
+      }
     },
     "output": {
       "log_file": "log.txt",
