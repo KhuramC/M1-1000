@@ -19,23 +19,23 @@
     },
     "inputs": {
         "baseline_spikes": {
-            "input_type": "spikes",
-            "module": "sonata",
-            "input_file": "$INPUT_DIR/baseline.h5",
-            "node_set": "baseline"
-        },
-        "thalamus_spikes": {
-			"input_type": "spikes",
-			"module": "sonata",
-			"input_file": "$INPUT_DIR/thalamus_short.h5",
-			"node_set": "thalamus"
-        },
-        "uncorrelated_spikes":{
           "input_type": "spikes",
           "module": "sonata",
-          "input_file": "$INPUT_DIR/uncorrelated.h5",
-          "node_set": {"population": "uncorrelated"}
-      }
+          "input_file": "$INPUT_DIR/baseline.h5",
+          "node_set": "baseline"
+        },
+        "thalamus_spikes": {
+			    "input_type": "spikes",
+			    "module": "sonata",
+			    "input_file": "$INPUT_DIR/thalamus_short.h5",
+			    "node_set": "thalamus"
+        },
+        "shell_spikes": {
+          "input_type": "spikes",
+          "module": "sonata",
+          "input_file": "$INPUT_DIR/shell.h5",
+          "node_set": "shell"
+        }
     },
     "output": {
       "log_file": "log.txt",

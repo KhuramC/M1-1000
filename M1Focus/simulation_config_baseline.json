@@ -24,11 +24,11 @@
         "input_file": "$INPUT_DIR/baseline.h5",
         "node_set": "baseline"
       },
-        "uncorrelated_spikes":{
-          "input_type": "spikes",
-          "module": "sonata",
-          "input_file": "$INPUT_DIR/uncorrelated.h5",
-          "node_set": {"population": "uncorrelated"}
+      "shell_spikes": {
+        "input_type": "spikes",
+        "module": "sonata",
+        "input_file": "$INPUT_DIR/shell.h5",
+        "node_set": "shell"
       }
     },
     "output": {

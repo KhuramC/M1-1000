@@ -9,8 +9,7 @@ from connectors import (
     spherical_dist, cylindrical_dist_z, GaussianDropoff, UniformInRange,
     pr_2_rho, rho_2_pr, ReciprocalConnector, UnidirectionConnector,
     OneToOneSequentialConnector, CorrelatedGapJunction,
-    syn_dist_delay_feng_section_PN, syn_section_PN,
-    syn_dist_delay_feng, syn_uniform_delay_section
+    syn_const_delay_feng_section_PN, syn_section_PN, syn_const_delay
 )
 
 ##############################################################################
@@ -30,7 +29,7 @@ column_width, column_height = 350., 300.
 x_start, x_end = - column_width / 2, column_width / 2
 y_start, y_end = - column_width / 2, column_width / 2
 z_start, z_end = - column_height / 2, column_height / 2
-z_5A = 0.  # boundary between 5A and 5B
+z_5A = 0.
 
 # Distance constraint for all cells
 min_conn_dist = 20.0  # um. PN soma diameter
@@ -39,7 +38,7 @@ max_conn_dist = 300.0  # or np.inf
 # ptotal_dist_range = (0., 150.)
 
 # When enabled, a shell of virtual cells will be created around the core cells.
-edge_effects = True
+edge_effects = False
 
 ##############################################################################
 ####################### Cell Proportions and Positions #######################
@@ -82,7 +81,7 @@ num_cells_5B = numCP_5B + numCS_5B + numFSI_5B + numLTS_5B
 
 # Generate random cell positions
 # Use poisson-disc sampling to generate positions with minimum distance limit.
-use_poiss_disc = True
+use_poiss_disc = False
 
 # Get positions for cells in the core
 def samples_in_core(samples):
@@ -226,9 +225,6 @@ if edge_effects:
 ##############################################################################
 ####################### Functions for Building Network #######################
 
-# Dictionary to store NetworkBuilder objects referenced by name
-networks = {}
-
 def build_networks(network_definitions: list) -> dict:
     """
     `network_definitions` should be a list of dictionaries, e.g. [{}, {}, ...]
@@ -319,9 +315,8 @@ def get_connector(param):
 def save_networks(networks, network_dir):
     """Build and save network"""
     # Remove the existing network_dir directory
-    if os.path.isdir(network_dir):
-        for f in os.listdir(network_dir):
-            os.remove(os.path.join(network_dir, f))
+    for f in os.listdir(network_dir):
+        os.remove(os.path.join(network_dir, f))
 
     # Run through each network and save their nodes/edges
     for network_name, network in networks.items():
@@ -334,6 +329,8 @@ def save_networks(networks, network_dir):
 ##############################################################################
 ############################ Network Definitions #############################
 
+# Dictionary to store NetworkBuilder objects referenced by name
+networks = {}
 network_definitions = [
     {   # Start Layer 5A
         'network_name': 'cortex',
@@ -455,58 +452,58 @@ if edge_effects:
     # name the cells the same as the original network because connection rules
     # defined later will require it
     shell_network = [
-        {   # Start Layer 5A
-            'network_name': 'shell',
-            'positions_list': shell_pos_list_5A,
-            'cells': [
-                {   # CP
-                    'N': virt_numCP_5A,
-                    'pop_name': 'CP',
-                    'model_type': 'virtual'
-                },
-                {   # CS
-                    'N': virt_numCS_5A,
-                    'pop_name': 'CS',
-                    'model_type': 'virtual'
-                },
-                {   # FSI
-                    'N': virt_numFSI_5A,
-                    'pop_name': 'FSI',
-                    'model_type': 'virtual'
-                },
-                {   # LTS
-                    'N': virt_numLTS_5A,
-                    'pop_name': 'LTS',
-                    'model_type': 'virtual'
-                }
-            ]
-        },  # End Layer 5A
-        {   # Start Layer 5B
-            'network_name': 'shell',
-            'positions_list': shell_pos_list_5B,
-            'cells': [
-                {   # CP
-                    'N': virt_numCP_5B,
-                    'pop_name': 'CP',
-                    'model_type': 'virtual'
-                },
-                {   # CS
-                    'N': virt_numCS_5B,
-                    'pop_name': 'CS',
-                    'model_type': 'virtual'
-                },
-                {   # FSI
-                    'N': virt_numFSI_5B,
-                    'pop_name': 'FSI',
-                    'model_type': 'virtual'
-                },
-                {   # LTS
-                    'N': virt_numLTS_5B,
-                    'pop_name': 'LTS',
-                    'model_type': 'virtual'
-                }
-            ]
-        }  # End Layer 5B
+    {   # Start Layer 5A
+        'network_name': 'shell',
+        'positions_list': shell_pos_list_5A,
+        'cells': [
+            {   # CP
+                'N': virt_numCP_5A,
+                'pop_name': 'CP',
+                'model_type': 'virtual'
+            },
+            {   # CS
+                'N': virt_numCS_5A,
+                'pop_name': 'CS',
+                'model_type': 'virtual'
+            },
+            {   # FSI
+                'N': virt_numFSI_5A,
+                'pop_name': 'FSI',
+                'model_type': 'virtual'
+            },
+            {   # LTS
+                'N': virt_numLTS_5A,
+                'pop_name': 'LTS',
+                'model_type': 'virtual'
+            }
+        ]
+    },  # End Layer 5A
+    {   # Start Layer 5B
+        'network_name': 'shell',
+        'positions_list': shell_pos_list_5B,
+        'cells': [
+            {   # CP
+                'N': virt_numCP_5B,
+                'pop_name': 'CP',
+                'model_type': 'virtual'
+            },
+            {   # CS
+                'N': virt_numCS_5B,
+                'pop_name': 'CS',
+                'model_type': 'virtual'
+            },
+            {   # FSI
+                'N': virt_numFSI_5B,
+                'pop_name': 'FSI',
+                'model_type': 'virtual'
+            },
+            {   # LTS
+                'N': virt_numLTS_5B,
+                'pop_name': 'LTS',
+                'model_type': 'virtual'
+            }
+        ]
+    }  # End Layer 5B
     ]
 
     # Add the shell to our network definitions
@@ -551,7 +548,7 @@ edge_definitions = [
             'target': {'pop_name': ['CP']}
         },
         'param': 'CP2CP',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # CS -> CS Reciprocal
         'network': 'cortex',
@@ -560,7 +557,7 @@ edge_definitions = [
             'target': {'pop_name': ['CS']}
         },
         'param': 'CS2CS',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # CP -> CS Unidirectional
         'network': 'cortex',
@@ -569,7 +566,7 @@ edge_definitions = [
             'target': {'pop_name': ['CS']}
         },
         'param': 'CP2CS',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # CS -> CP Unidirectional
         'network': 'cortex',
@@ -578,7 +575,7 @@ edge_definitions = [
             'target': {'pop_name': ['CP']}
         },
         'param': 'CS2CP',
-        'add_properties': 'syn_dist_delay_feng_section_PN'
+        'add_properties': 'syn_const_delay_feng_section_PN'
     },
     {   # FSI -> FSI Reciprocal
         'network': 'cortex',
@@ -759,14 +756,16 @@ edge_params = {
     'CP2CP': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=127.0, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.0866, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p0_arg': cylindrical_dist_z,
-            'pr': 0.042,
-            'estimate_rho': True,
-            'dist_range_forward': (0., 100.)
+            #Total connections from [234795 + 71604 + 118928(Shell)] / 4000(total in D model) = 106.33
+            #p0 = 106.33 / 399(don't want synapse to itself) = 0.2665
+            #'p0': 0.2665,
+            #'pr': rho_2_pr(0.2665,0.2665,0.433),
+            #for 2,000 cell version
+            #p0 = 106.33 / 799(don't want synapse to itself) = 0.1331
+            'p0': 0.1331, 
+            #rho is the last value
+           'pr': rho_2_pr(0.1331,0.1331,0.433),
+            'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -779,14 +778,16 @@ edge_params = {
     'CS2CS': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=127.0, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.077, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p0_arg': cylindrical_dist_z,
-            'pr': 0.015,
-            'estimate_rho': True,
-            'dist_range_forward': (0., 100.)
+            #Total connections [242197 + 22741 + 111505(Shell)] / 4000(total in D model) = 94.11
+            #p0: 94.11 / 399(don't want synapses to itself) = 0.2359
+            #'p0': 0.2359,
+            #'pr': rho_2_pr(0.2359,0.2359,0.126),
+            #for 2,000 cell version:
+            #p0: 94.11 / 799(don't want synapses to itself) = 0.11778
+            'p0': 0.11778,
+            #rho is last value
+            'pr': rho_2_pr(0.11778,0.11778,0.126),
+            'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -799,11 +800,14 @@ edge_params = {
     'CP2CS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': GaussianDropoff(
-                stdev=127.0, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.01, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p_arg': cylindrical_dist_z,
+            #Total connections = [34750 + 14120(shell)] / 4000(total CS in D model) = 12.22
+            #p: 12.22 / 400(Total CP in H) = 0.03054
+            #'p': 0.03054,
+            #Ziao's doc claims that p: 0.0217?
+            
+            #2,000 cell version
+            #p: 12.22 / 800(Total CP in H) = 0.015275
+            'p': 0.015275,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -816,11 +820,13 @@ edge_params = {
     'CS2CP': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': GaussianDropoff(
-                stdev=127.0, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.112, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p_arg': cylindrical_dist_z,
+            #Total connections = [390230 + 156372(shell)] / 4000(total CP in D model) = 136.65
+            #p: 136.65 / 400(Total CS in H) = 0.34163
+            #'p': 0.34163,
+            
+            #2,000 cell version
+            #p: 136.65 / 800(Total CS in H) = 0.170815
+            'p': 0.170815,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -833,15 +839,16 @@ edge_params = {
     'FSI2FSI': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=126.77, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.103, ptotal_dist_range=(min_conn_dist, 200.),
-                dist_type='spherical'),
-            'p0_arg': spherical_dist,
-            'pr': 0.04,
-            'estimate_rho': True,
-            'dist_range_forward': (min_conn_dist, 100.)
-            # 'rho': pr_2_rho(0.103, 0.103, 0.04)  # use fixed rho instead
+            #Total connections[25219 + 2188 + 17903(Shell)] / 1200(Total in D model) = 37.76
+            #p0: 37.76 / 119(don't want synapses to itself) = 0.3173
+            #'p0': 0.3173,
+            #'pr': rho_2_pr(0.3173,0.3173,0.071),
+            #for 2,000 cell version
+            #p0: 37.76 / 239(don;t want synapses to itself) = 0.15799
+            'p0': 0.15799,
+             #rho is last value
+             'pr': rho_2_pr(0.15799,0.15799,0.071),
+             'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -854,11 +861,14 @@ edge_params = {
     'LTS2LTS': {
         'connector_class': UnidirectionConnector,
         'connector_params': {
-            'p': GaussianDropoff(
-                stdev=126.77, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.15, ptotal_dist_range=(min_conn_dist, 50.),
-                dist_type='spherical'),
-            'p_arg': spherical_dist
+            #Total connections[9267 + 6149(shell)] = / 800(Total in D model) = 19.27
+            #p: 19.27 / 79(don't want synapses to itself) = 0.24392
+            #biggest change
+            #'p': 0.24392,
+            
+            #For 2,000 cell version
+            #p: = 19.27 / 159(don't want synapses to itself) = 0.12119
+            'p': 0.12119,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -871,19 +881,21 @@ edge_params = {
     'FSI2LTS': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=126.77, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.34, ptotal_dist_range=(min_conn_dist, 50.),
-                dist_type='spherical'),
-            'p0_arg': spherical_dist,
-            'p1': GaussianDropoff(
-                stdev=126.77, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.53, ptotal_dist_range=(min_conn_dist, 50.),
-                dist_type='spherical'),  # 53% unidirectional
-            'p1_arg': spherical_dist,
-            'pr': 0.22,
-            'estimate_rho': True,
-            'dist_range_forward': (min_conn_dist, 50.)
+            #total connection [31558 + 20882(shell)] / 800(Total LTS in D model) = 65.55
+            #p0: 65.55 / 120(total FSI in H) = 0.54625
+            #'p0':0.54625,
+            #total connection [49018 + 32993(shell)] / 1200(Total FSI in D model) = 68.34
+            #p1: 68.34 / 80(total LTS in H) = 0.85425
+            #'p1':0.85425,
+            #'pr': rho_2_pr(0.54625,0.85425,0.165),
+            #for 2,000 cell version
+            #p0: 65.55 / 240(Total FSI in H) = 0.273125
+            'p0': 0.273125,
+            #p1: 68.34 / 160(Total LTS in H) = 0.427125
+            'p1': 0.427125,
+            #rho is last value
+            'pr': rho_2_pr(0.273125,0.427125,0.165),
+            'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -907,19 +919,21 @@ edge_params = {
     'CP2FSI': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=99.84, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.32, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p0_arg': cylindrical_dist_z,
-            'p1': GaussianDropoff(
-                stdev=96.60, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.48, ptotal_dist_range=(min_conn_dist, 100.),
-                dist_type='spherical'),
-            'p1_arg': spherical_dist,
-            'pr': 0.26,
-            'estimate_rho': True,
-            'dist_range_backward': (min_conn_dist, 100.)
+            #Total connection [253997 + 80519(shell)] / 1200(Total FSI in D model) = 278.8
+            #p0: 278.8 / 400(total CP in H) = 0.697
+            #'p0':0.697,
+            #Total connection [159483 + 80214(shell)] / 4000(Total CP in D model) = 59.9
+            #p1: 59.9 / 120(Total FSI in H) = 0.499
+            #'p1':0.499,
+            #'pr': rho_2_pr(0.697,0.499,0.407),
+            #2,000 cell model version
+            #p0: 278.8 / 800(Total CP in H) = 0.3485
+            'p0': 0.3485,
+            #p1: 59.9 / 240(Total FSI in H) = 0.249583
+            'p1': 0.249583,
+            #last is rho
+            'pr': rho_2_pr(0.3485,0.249583,0.407),
+            'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -943,19 +957,21 @@ edge_params = {
     'CS2FSI': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=99.84, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.22, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p0_arg': cylindrical_dist_z,
-            'p1': GaussianDropoff(
-                stdev=96.60, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.36, ptotal_dist_range=(min_conn_dist, 100.),
-                dist_type='spherical'),
-            'p1_arg': spherical_dist,
-            'pr': 0.17,
-            'estimate_rho': True,
-            'dist_range_backward': (min_conn_dist, 100.)
+            #Total connection[173295 + 56807(shell)] / 1200(Total FSI in D model) = 191.75
+            #p0: 191.75 / 400(Total CS in H) = 0.47938
+            #'p0':0.47938,
+            #total connection[119889 + 63032(shell)] / 4000(Total CS in D model) = 45.73
+            #p1: 45.73 / 120(Total FSI in H) = 0.38108
+            #'p1':0.38108,
+            #'pr': rho_2_pr(0.47938,0.38108,0.422),
+            #for 2,000 cell version
+            #p0: 191.75 / 800(Total CS in H) = 0.2396875
+            'p0': 0.2396875,
+            #p1: 45.73 / 240(Total FSI in H) = 0.1905416
+            'p1': 0.1905416,
+            #rho is last value
+            'pr': rho_2_pr(0.2396875,0.1905416,0.422),
+            'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -979,19 +995,21 @@ edge_params = {
     'CP2LTS': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=99.84, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.28, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p0_arg': cylindrical_dist_z,
-            'p1': GaussianDropoff(
-                stdev=96.60, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.39, ptotal_dist_range=(min_conn_dist, 100.),
-                dist_type='spherical'),
-            'p1_arg': spherical_dist,
-            'pr': 0.16,
-            'estimate_rho': True,
-            'dist_range_backward': (min_conn_dist, 100.)
+            #Total connections = [149804 + 46497(shell)] / 800(Total LTS in D model) = 245.38
+            #p0: 245.38 / 400(Total CP in H) = 0.61345
+            #'p0':0.61345,
+            #Total connections = [85074 + 44780(shell)] / 4000(Total CP in D model) = 32.46
+            #p1: 32.46 / 80(Total LTS in H) = 0.40575
+            #'p1':0.40575,
+            #'pr': rho_2_pr(0.61345,0.40575,0.192),
+            #2,000 cell version:
+            #p0: 245.38 / 800(Total CP in H) = 0.306725
+            'p0': 0.306725,
+            #p1: 32.46 / 160(Total LTS in H) = 0.202875
+            'p1': 0.202875,
+            #last value is rho
+            'pr': rho_2_pr(0.306725,0.202875,0.192),
+            'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1015,19 +1033,21 @@ edge_params = {
     'CS2LTS': {
         'connector_class': ReciprocalConnector,
         'connector_params': {
-            'p0': GaussianDropoff(
-                stdev=99.84, min_dist=0., max_dist=max_conn_dist,
-                ptotal=0.13, ptotal_dist_range=(0., 100.),
-                dist_type='cylindrical'),
-            'p0_arg': cylindrical_dist_z,
-            'p1': GaussianDropoff(
-                stdev=96.60, min_dist=min_conn_dist, max_dist=max_conn_dist,
-                ptotal=0.086, ptotal_dist_range=(min_conn_dist, 100.),
-                dist_type='spherical'),
-            'p1_arg': spherical_dist,
-            'pr': 0.057,
-            'estimate_rho': True,
-            'dist_range_backward': (min_conn_dist, 100.)
+            #Total connections = [68442 + 21774(shell)] / 800(Total LTS in D model) = 112.77
+            #p0: 112.77 / 400(Total CS in H) = 0.28193
+            #'p0':0.28193,
+            #Total connections = [19834 + 10440(shell)] / 4000(Total CS in D model) = 7.57
+            #p1: 7.57 / 80(Total LTS in H) = 0.094625
+            #'p1': 0.09463,
+            #'pr': rho_2_pr(0.28193,0.09463,0.467),
+            #2,000 cell version
+            #p0: 112.77 / 800(Total CS in H) = 0.1409625
+            'p0': 0.1409625,
+            #p1: 7.57 / 160(Total LTS in H) = 0.0473125
+            'p1': 0.0473125,
+            #last value is rho
+            'pr': rho_2_pr(0.1409625,0.0473125,0.467),
+            'estimate_rho': False,
             },
         'weight_function': 'lognormal_weight',
         'syn_weight': 1.,
@@ -1080,7 +1100,7 @@ edge_params = {
         'delay': 0.0,
         'afferent_section_id': 2,
         'afferent_section_pos': 0.8,  # end of apic
-        'dynamics_params': 'Thal2CP.json'
+        'dynamics_params': 'Base2CP.json'
     },
     'Base2CS': {
         'connector_class': get_connector,
@@ -1092,7 +1112,7 @@ edge_params = {
         'delay': 0.0,
         'afferent_section_id': 2,
         'afferent_section_pos': 0.8,  # end of apic
-        'dynamics_params': 'Thal2CS.json'
+        'dynamics_params': 'Base2CS.json'
     },
     'Base2FSI': {
         'connector_class': get_connector,
@@ -1122,41 +1142,34 @@ edge_params = {
 
 # Will be called by conn.add_properties() for the associated connection
 edge_add_properties = {
-    'syn_dist_delay_feng_section_PN': {
+    'syn_const_delay_feng_section_PN': {
         'names': ['delay', 'afferent_section_id', 'afferent_section_pos'],
-        'rule': syn_dist_delay_feng_section_PN,
+        'rule': syn_const_delay_feng_section_PN,
         'rule_params': {
-            'p': 0.9, 'sec_id': (1, 2), 'sec_x': (0.4, 0.6), 'min_delay': 0.8
+            'p': 0.9, 'sec_id': (1, 2), 'sec_x': (0.4, 0.6), 'min_delay': 1.0
         },
-        'dtypes': [float, np.uint16, float]
+        'dtypes': [np.float64, np.uint16, np.float64]
     },
     'syn_section_PN': {
         'names': ['afferent_section_id', 'afferent_section_pos'],
         'rule': syn_section_PN,
         'rule_params': {'p': 0.9, 'sec_id': (1, 2), 'sec_x': (0.4, 0.6)},
-        'dtypes': [np.uint16, float]
+        'dtypes': [np.uint16, np.float64]
     },
     'syn_dist_delay_feng_default': {
         'names': 'delay',
-        'rule': syn_dist_delay_feng,
-        'dtypes': float
-    },
-    'syn_uniform_delay_section': {
-        'names': 'delay',
-        'rule': syn_uniform_delay_section,
-        'rule_params': {'low': 0.8, 'high': 1.2},
-        'dtypes': float
+        'rule': syn_const_delay,
+        'dtypes': np.float64
     }
 }
 
 
 # Load synapse dictionaries
-# See synapses.py - loads each json's in components/synaptic_models/synapses_STP
-# into a dictionary so the properties can be referenced in the files,
+# See synapses.py - loads each json's in components/synaptic_models into a
+# dictionary so the properties can be referenced in the files,
 # e.g., syn['file.json'].get('property')
-syn_dir = 'components/synaptic_models/synapses_STP'
-synapses.load(rng_obj=rng)  # rng not used during building
-syn = synapses.syn_params_dicts(syn_dir=syn_dir)
+synapses.load(rng_obj=rng)
+syn = synapses.syn_params_dicts()
 
 # Build your edges into the networks
 build_edges(networks, edge_definitions, edge_params, edge_add_properties, syn)
@@ -1224,6 +1237,10 @@ if edge_effects:
                 connector_params['verbose'] = connector.verbose
                 edge_params_val['connector_params'] = connector_params
         shell_edge_params[shell_edge['param']] = edge_params_val
+        # edge_params_val['delay'] = 0.0 # Set delay to 0
+        # add_properties = shell_edge.pop('add_properties')
+        # if add_properties == 'syn_const_delay_feng_section_PN':
+            # shell_edge['add_properties'] = 'syn_section_PN'
 
     # Check parameters
     print("\nShell edges:")
@@ -1245,24 +1262,20 @@ if edge_effects:
 
 ##########################################################################
 ############################ GAP JUNCTIONS ###############################
-
-net = networks['cortex']
-
+# Currently not working due to some errors in BMTK
 # FSI
-g_gap = 0.000066  # microsiemens
+net = networks['cortex']
+population = net.nodes(pop_name='FSI')
+
 # gap junction probability correlated with chemical synapse
 gap_junc_FSI = CorrelatedGapJunction(
-    p_non=GaussianDropoff(
-        mean=min_conn_dist, stdev=98.0,
-        min_dist=min_conn_dist, max_dist=max_conn_dist,
-        ptotal=0.267, ptotal_dist_range=(min_conn_dist, 200.),
-        dist_type='spherical'),
+    p_non=0.1228,
     p_uni=0.56, p_rec=1.,
     connector=edge_params['FSI2FSI']['connector_object']
 )
-population = net.nodes(pop_name='FSI')
 gap_junc_FSI.setup_nodes(source=population, target=population)
 
+g_gap = 0.000038# microsiemens
 conn = net.add_edges(
     is_gap_junction=True, syn_weight=g_gap, target_sections=None,
     afferent_section_id=0, afferent_section_pos=0.5,
@@ -1270,30 +1283,27 @@ conn = net.add_edges(
 )
 
 # LTS
-g_gap = 0.00076  # microsiemens
+net = networks['cortex']
+population = net.nodes(pop_name='LTS')
+
 # gap junction probability uncorrelated with chemical synapse
-LTS_uncorr_p = GaussianDropoff(
-    mean=0., stdev=74.28,
-    min_dist=min_conn_dist, max_dist=max_conn_dist,
-    ptotal=0.85, ptotal_dist_range=(min_conn_dist, 50.),
-    dist_type='spherical'
-)
+LTS_uncorr_p = 0.0783
 gap_junc_LTS = CorrelatedGapJunction(
     p_non=LTS_uncorr_p, p_uni=LTS_uncorr_p, p_rec=LTS_uncorr_p,
     connector=edge_params['LTS2LTS']['connector_object']
 )
-population = net.nodes(pop_name='LTS')
 gap_junc_LTS.setup_nodes(source=population, target=population)
 
+g_gap = 0.00076 # microsiemens
 conn = net.add_edges(
     is_gap_junction=True, syn_weight=g_gap, target_sections=None,
     afferent_section_id=0, afferent_section_pos=0.5,
     **gap_junc_LTS.edge_params()
 )
 
-
 ##########################################################################
 ###############################  BUILD  ##################################
+
 
 # Save the network into the appropriate network dir
 save_networks(networks, network_dir)
@@ -1305,7 +1315,7 @@ if False:
         network_dir=network_dir,
         tstop=t_sim,
         dt=dt,
-        report_vars=[],
+        report_vars=['v'],
         celsius=31.0,
         spikes_inputs=[
             ('baseline', './input/baseline.h5'),
