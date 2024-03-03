@@ -26,7 +26,7 @@ dt = 0.1  # ms
 
 # Network size and dimensions
 num_cells = 2000  # 10000
-column_width, column_height = 350., 300.
+column_width, column_height = 270., 500.
 x_start, x_end = - column_width / 2, column_width / 2
 y_start, y_end = - column_width / 2, column_width / 2
 z_start, z_end = - column_height / 2, column_height / 2
@@ -1249,7 +1249,7 @@ if edge_effects:
 net = networks['cortex']
 
 # FSI
-g_gap = 0.000066  # microsiemens
+g_gap = 0.000132  # microsiemens
 # gap junction probability correlated with chemical synapse
 gap_junc_FSI = CorrelatedGapJunction(
     p_non=GaussianDropoff(
@@ -1270,7 +1270,7 @@ conn = net.add_edges(
 )
 
 # LTS
-g_gap = 0.00076  # microsiemens
+g_gap = 0.00152  # microsiemens
 # gap junction probability uncorrelated with chemical synapse
 LTS_uncorr_p = GaussianDropoff(
     mean=0., stdev=74.28,
