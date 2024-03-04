@@ -87,9 +87,9 @@ num_cells_5B = numCP_5B + numCS_5B + numFSI_5B + numLTS_5B
 ################################## UNCORRELATED #############################################
 uncor_PN_percent = 30 #based on comparing proportion in Ziao's
 uncor_ITN_percent = 35 #
-uncor_num_PN = (num_CP + num_CS) * uncor_PN_percent / (100 - uncor_PN_percent)
+uncor_num_PN = round((num_CP + num_CS) * uncor_PN_percent / (100 - uncor_PN_percent))
 uncor_num_CP, uncor_num_CS= num_prop([num_CP,num_CS], uncor_num_PN)
-uncor_num_ITN = (num_FSI + num_LTS) * uncor_ITN_percent / (100 - uncor_ITN_percent)
+uncor_num_ITN = round((num_FSI + num_LTS) * uncor_ITN_percent / (100 - uncor_ITN_percent))
 uncor_num_FSI, uncor_num_LTS =  num_prop([num_FSI,num_LTS], uncor_num_ITN)
 
 uncor_total = uncor_num_PN + uncor_num_ITN
@@ -1735,7 +1735,7 @@ gap_junc_FSI = CorrelatedGapJunction(
 )
 gap_junc_FSI.setup_nodes(source=population, target=population)
 
-g_gap = 0.0000825# microsiemens
+g_gap = 0.0000792# microsiemens
 conn = net.add_edges(
     is_gap_junction=True, syn_weight=g_gap, target_sections=None,
     afferent_section_id=0, afferent_section_pos=0.5,
@@ -1786,4 +1786,8 @@ if False:
         compile_mechanisms=False
     )
 
+print(f"Total CP virtual cells : {uncor_num_CP}")
+print(f"Total CS virtual cells : {uncor_num_CS}")
+print(f"Total FSI virtual cells : {uncor_num_FSI}")
+print(f"Total LTS virtual cells : {uncor_num_LTS}")
 print(f"Total virtual cells : {uncor_total}")
