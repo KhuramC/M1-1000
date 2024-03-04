@@ -85,8 +85,14 @@ num_cells_5B = numCP_5B + numCS_5B + numFSI_5B + numLTS_5B
 
 #############################################################################################
 ################################## UNCORRELATED #############################################
-uncorrelated_num_cells = 15600 # this is 39,000 * 2 / 5 as seen in Ziao's build_network model
-uncor_num_CP, uncor_num_CS, uncor_num_FSI, uncor_num_LTS = num_prop([40, 40, 12, 8], uncorrelated_num_cells)
+uncor_PN_percent = 30 #based on comparing proportion in Ziao's
+uncor_ITN_percent = 35 #
+uncor_num_PN = (num_CP + num_CS) * uncor_PN_percent / (100 - uncor_PN_percent)
+uncor_num_CP, uncor_num_CS= num_prop([num_CP,num_CS], uncor_num_PN)
+uncor_num_ITN = (num_FSI + num_LTS) * uncor_ITN_percent / (100 - uncor_ITN_percent)
+uncor_num_FSI, uncor_num_LTS =  num_prop([num_FSI,num_LTS], uncor_num_ITN)
+
+uncor_total = uncor_num_PN + uncor_num_ITN
 #If true, a 'shell' of virtual cells will be created around core cells to provide uncorrelated input
 uncorrelated = True
 
@@ -1748,7 +1754,7 @@ gap_junc_LTS = CorrelatedGapJunction(
 )
 gap_junc_LTS.setup_nodes(source=population, target=population)
 
-g_gap = 0.001254 # microsiemens
+g_gap = 0.001292 # microsiemens
 conn = net.add_edges(
     is_gap_junction=True, syn_weight=g_gap, target_sections=None,
     afferent_section_id=0, afferent_section_pos=0.5,
@@ -1779,3 +1785,6 @@ if False:
         config_file='config.json',
         compile_mechanisms=False
     )
+
+
+print(f"Total number of virtual cells = {uncor_total}")
