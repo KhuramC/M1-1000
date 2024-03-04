@@ -30,11 +30,11 @@
 			    "input_file": "$INPUT_DIR/thalamus_short.h5",
 			    "node_set": "thalamus"
         },
-        "shell_spikes": {
+        "uncorrelated_spikes": {
           "input_type": "spikes",
           "module": "sonata",
-          "input_file": "$INPUT_DIR/shell.h5",
-          "node_set": "shell"
+          "input_file": "$INPUT_DIR/uncorrelated.h5",
+          "node_set": {"population": "uncorrelated"}
         }
     },
     "output": {
