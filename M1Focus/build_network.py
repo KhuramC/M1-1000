@@ -1249,7 +1249,7 @@ if edge_effects:
 net = networks['cortex']
 
 # FSI
-g_gap = 0.0000825  # microsiemens
+g_gap = 0.000099  # microsiemens
 # gap junction probability correlated with chemical synapse
 gap_junc_FSI = CorrelatedGapJunction(
     p_non=GaussianDropoff(
