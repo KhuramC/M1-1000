@@ -1735,7 +1735,7 @@ gap_junc_FSI = CorrelatedGapJunction(
 )
 gap_junc_FSI.setup_nodes(source=population, target=population)
 
-g_gap = 0.0000792# microsiemens
+g_gap = 0.0000726# microsiemens
 conn = net.add_edges(
     is_gap_junction=True, syn_weight=g_gap, target_sections=None,
     afferent_section_id=0, afferent_section_pos=0.5,
