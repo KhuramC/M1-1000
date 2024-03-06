@@ -6,11 +6,12 @@ from bmtk.utils.sim_setup import build_env_bionet
 import synapses
 import connectors
 from connectors import (
-    spherical_dist, cylindrical_dist_z, GaussianDropoff, UniformInRange,
-    pr_2_rho, rho_2_pr, ReciprocalConnector, UnidirectionConnector,
+    rho_2_pr, ReciprocalConnector, UnidirectionConnector,
     OneToOneSequentialConnector, CorrelatedGapJunction,
     syn_const_delay_feng_section_PN, syn_section_PN, syn_const_delay
 )
+
+
 
 ##############################################################################
 ############################## General Settings ##############################
@@ -873,7 +874,7 @@ edge_definitions = [
         'param': 'UNCOR_LTS2LTS',
         'add_properties': 'syn_const_delay_feng_default'
     },
-    {   # FSI -> LTS Unidirectional
+    {   #uncorrelated FSI -> LTS Unidirectional
         'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['FSI']},
@@ -884,7 +885,7 @@ edge_definitions = [
         'param': 'UNCOR_FSI2LTS',
         'add_properties': 'syn_const_delay_feng_default'
     },
-    {   #uncorrelated FSI -> cortex LTS Unidirectional
+    {   #uncorrelated LTS -> cortex FSI Unidirectional
         'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['LTS']},
@@ -906,7 +907,7 @@ edge_definitions = [
         'param': 'UNCOR_CP2FSI',
         'add_properties': 'syn_const_delay_feng_default'
     },
-    {   #uncorrelated CP -> cortex FSI Unidirectional
+    {   #uncorrelated FSI -> cortex CP Unidirectional
         'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['FSI']},
@@ -928,7 +929,7 @@ edge_definitions = [
         'param': 'UNCOR_CS2FSI',
         'add_properties': 'syn_const_delay_feng_default'
     },
-    {   #uncorrelated CS -> cortex FSI Unidirectional
+    {   #uncorrelated FSI -> cortex CS Unidirectional
         'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['FSI']},
@@ -950,7 +951,7 @@ edge_definitions = [
         'param': 'UNCOR_CP2LTS',
         'add_properties': 'syn_const_delay_feng_default'
     },
-    {   #uncorrelated CP -> cortex LTS Unidirectional
+    {   #uncorrelated LTS -> cortex CP Unidirectional
         'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['LTS']},
@@ -972,7 +973,7 @@ edge_definitions = [
         'param': 'UNCOR_CS2LTS',
         'add_properties': 'syn_const_delay_feng_default'
     },
-    {   #uncorrelated CS -> cortex LTS Unidirectional
+    {   #uncorrelated LTS -> cortex CS Unidirectional
         'network': 'uncorrelated',
         'edge': {
             'source': {'pop_name': ['LTS']},
