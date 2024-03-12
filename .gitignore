@@ -20,7 +20,7 @@ x86_64/
 /Analysis/simulation_resultsv2/
 /Analysis/simulation_resultsv3/
 /Analysis/simulation_resultsv4/
-/Analysis/simulation_resultsv6/
+/Analysis/simulation_result_v6/*
 /M1Focus/error_baseline.txt
 /M1Focus/error_long.txt
 /M1Focus/error_short.txt
